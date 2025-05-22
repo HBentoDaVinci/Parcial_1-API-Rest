@@ -63,8 +63,9 @@ class PlanesManager {
             this.planes[index].nombre = plan.nombre;
             this.planes[index].rangoEtario = plan.rangoEtario;
             this.planes[index].cobertura = plan.cobertura;
-            this.planes[index].ecivil = plan.ecivil;
+            this.planes[index].grupoFamiliar = plan.grupoFamiliar;
             this.planes[index].prepaga = plan.prepaga;
+            this.planes[index].tarifa = plan.tarifa;
             const data = JSON.stringify(this.planes, null, 2);
             await fs.writeFile(path, data);
             return true

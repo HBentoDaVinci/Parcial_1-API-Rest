@@ -1,10 +1,8 @@
-import PlanesManager from "../models/PlanesManager.js";
-
-const planesModel = new PlanesManager();
+import Plan from "../models/planModel.js";
 
 const getPlanes = async (request, response) => {
     try {
-        const planes = await planesModel.getPlanes(); 
+        const planes = await Plan.find(); 
         response.status(200).json({ msg: 'ok', data: planes});
     } catch (error) {
         response.status(500).json({msg: 'Error del servidor', data: []});
@@ -14,7 +12,7 @@ const getPlanes = async (request, response) => {
 const getPlanById = async (request, response) => {
     try {
         const { id } = request.params;
-        const plan = await planesModel.getPlanById(id);
+        const plan = await Plan.findById(id);
         if (plan) {
             response.status(200).json({ msg: 'ok', data: plan});
         } else {
@@ -29,7 +27,11 @@ const getPlanById = async (request, response) => {
 const addPlan = async (request, response) => {
     try {
         const plan = request.body;
-        const id = await planesModel.addPlan(plan);
+
+        const newPlan = new plan(plan);
+        newPlan.save();
+
+        const id = newPlan._id;
 
         response.status(202).json({msg: `Plan guardado id:${id}` })
     } catch (error) {

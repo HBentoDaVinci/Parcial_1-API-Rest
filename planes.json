@@ -11,11 +11,11 @@
       "Consultas médicas y odontología general.",
       "Internación en habitación individual."
     ],
-    "ecivil": [
-      "soltero",
-      "casado"
+    "grupoFamiliar": [
+      "individual"
     ],
-    "prepaga": "Medicus"
+    "prepaga": "Medicus",
+    "tarifa": 100000
   },
   {
     "id": "58g950ac-2416-5ct0-ab05-935ecb748t5l",
@@ -29,11 +29,12 @@
       "Médico a domicilio sin cargo",
       "Más sanatorios y profesionales contratados"
     ],
-    "ecivil": [
-      "casado",
-      "soltero"
+    "grupoFamiliar": [
+      "individual",
+      "matrimonio"
     ],
-    "prepaga": "Osde"
+    "prepaga": "Osde",
+    "tarifa": 180000
   },
   {
     "id": "42g950ac-2416-5ct0-ab05-935ecb748y84",
@@ -47,9 +48,12 @@
       "Ortodoncia sin límites de edad",
       "Reintegro 70% en medicamentos."
     ],
-    "ecivil": [
-      "soltero"
+    "grupoFamiliar": [
+      "individual",
+      "matrimonio",
+      "familiar"
     ],
-    "prepaga": "Sancor Salud"
+    "prepaga": "Sancor Salud",
+    "tarifa": 120000
   }
 ]
