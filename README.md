@@ -14,7 +14,7 @@ La **API de PrePaga Salud** ofrece acceso a información actualizada sobre plane
 ---
 
 # Datos del autor
-  Alumno: Herminia G. Bento
-  Materia: Aplicaciones Híbridas
-  Docente: Jonathan Emanuel Cruz
-  Comisión: DW4TAv
+- Alumno: Herminia G. Bento
+- Materia: Aplicaciones Híbridas
+- Docente: Jonathan Emanuel Cruz
+- Comisión: DW4TAv
