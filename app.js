@@ -7,7 +7,7 @@ dotenv.config();
 
 const port = process.env.PORT;
 
-const uri_db = process.env.URI_DB;
+const uri_db = process.env.URI_DB_CLOUD;
 
 // creo la aplicacion de express
 const app = express();
