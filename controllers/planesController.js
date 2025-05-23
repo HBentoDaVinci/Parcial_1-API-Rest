@@ -26,14 +26,18 @@ const getPlanById = async (request, response) => {
 
 const addPlan = async (request, response) => {
     try {
-        const plan = request.body;
+        const {nombre, rangoEtario: {min, max}, cobertura, grupoFamiliar, prepaga, tarifa} = request.body;
+        const data = await Plan.findOne({nombre: nombre, prepaga: prepaga});
+        if (data){
+            return response.status(404).json({msg: 'Ya existe un plan con ese nombre para esa prepaga'})
+        }
 
-        const newPlan = new plan(plan);
-        newPlan.save();
+        const planNew = new Plan({nombre, rangoEtario: {min, max}, cobertura, grupoFamiliar, prepaga, tarifa});
+        planNew.save();
 
-        const id = newPlan._id;
+        const id = planNew._id;
 
-        response.status(202).json({msg: `Plan guardado id:${id}` })
+        response.status(202).json({msg: `Plan guardado id: ${id}` })
     } catch (error) {
         console.log({error});
         response.status(500).json({error: 'Error del servidor'});
@@ -43,7 +47,7 @@ const addPlan = async (request, response) => {
 const deletePlanById = async (request, response) => {
     try {
         const { id } = request.params;
-        const status = await planesModel.deletePlanById(id);
+        const status = await Plan.findByIdAndDelete(id);
         if (status) {
             response.status(200).json({ msg: 'Plan eliminado exitosamente', data:[]});
         } else {
@@ -59,8 +63,8 @@ const updatePlanById = async (request, response) => {
     try {
         const { id } = request.params;
         const plan = request.body;
-        const status = await planesModel.updatePlanById(id, plan);
-        if (status) {
+        const planUpdate = await Plan.findByIdAndUpdate(id, plan);
+        if (planUpdate) {
             response.status(200).json({ msg: 'Datos del plan actualizado', data: plan});
         } else {
             response.status(404).json({msg: 'No se encontro el plan solicitado', data: []});

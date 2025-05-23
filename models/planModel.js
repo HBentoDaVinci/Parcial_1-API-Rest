@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const planSchema = new Schema({
     nombre: String,
     rangoEtario: {
-        min: { Number},
-        max: { Number }
+        min: Number,
+        max: Number
     },
     cobertura: [String],
     grupoFamiliar: [String],
