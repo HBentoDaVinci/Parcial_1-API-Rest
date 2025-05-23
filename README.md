@@ -8,8 +8,8 @@ La **API de PrePaga Salud** ofrece acceso a información actualizada sobre plane
 # ¿Qué ofrece?
 
 - Listado de planes de salud disponibles
-- Cartillas médicas por plan
-- Búsqueda de centros médicos por localidad o especialidad
+- Cartillas médicas por plan (Proximamente)
+- Búsqueda de centros médicos por localidad o especialidad (Proximamente)
 
 ---
 
