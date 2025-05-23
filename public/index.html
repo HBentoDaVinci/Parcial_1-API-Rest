@@ -40,34 +40,97 @@
       </div>
       <div class="mb-5">
         <h2>Endpoints</h2>
-        <h3>Obtener listado de planes</h3>
-        <p class="h6"><span class="badge text-bg-secondary">GET</span> <a href="/api/planes" target="_blank">/api/planes</a></p>
-        <p><span class="fw-semibold">Descripción:</span> Devuelve una lista de todos los planes de salud disponibles.</p>
-        <p><span class="fw-semibold">Respuesta:</span></p>
-        <pre>
-          <code>[
-            {
-              "id": "80f110ac-2416-4bf9-ab05-935ecb797c9c",
-              "nombre": "Plan Joven",
-              "rangoEtario": {
-                "min": 18,
-                "max": 35
+        <div class="mb-5">
+          <h3>Obtener listado de planes</h3>
+          <p class="h6"><span class="badge text-bg-secondary">GET</span> <a href="/api/planes" target="_blank">/api/planes</a></p>
+          <p><span class="fw-semibold">Descripción:</span> Devuelve una lista de todos los planes de salud disponibles.</p>
+          <p><span class="fw-semibold">Respuesta:</span></p>
+          <pre>
+            <code>[
+              {
+                "_id": "663f5b2c1a4d4d5b6f12e891",
+                "nombre": "Plan Joven",
+                "rangoEtario": {
+                  "min": 18,
+                  "max": 35
+                },
+                "cobertura": [
+                  "Emergencias las 24 horas.",
+                  "Consultas médicas y odontología general.",
+                  "Internación en habitación individual."
+                ],
+                "grupoFamiliar": [
+                  "individual",
+                  "matrimonio",
+                  "familiar"
+                ],
+                "prepaga": "Sancor Salud"
               },
-              "cobertura": [
-                "Emergencias las 24 horas.",
-                "Consultas médicas y odontología general.",
-                "Internación en habitación individual."
-              ],
-              "grupoFamiliar": [
-                "individual",
-                "matrimonio",
-                "familiar"
-              ],
-              "prepaga": "Sancor Salud"
-            },
-          ]</code>
-        </pre>
+            ]</code>
+          </pre>
+        </div>
+        <div class="mb-5">
+          <h3>Obtener listado de planes filtrados por query</h3>
+          <p class="h6"><span class="badge text-bg-secondary">GET</span> <a href="/api/planes?prepaga=Osde&edad=30" target="_blank">/api/planes/prepaga=Osde&edad=30</a></p>
+          <p><span class="fw-semibold">Descripción:</span> Devuelve una lista de todos los planes disponibles para la prepaga solicitada.</p>
+          <p><span class="fw-semibold">Parámetros:</span></p>
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Parámetro</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row">nombre</td>
+                  <td>String</td>
+                  <td>Palabra clave para filtrar por nombre del plan</td>
+                </tr>
+                <tr>
+                  <td scope="row">prepaga</td>
+                  <td>String</td>
+                  <td>Nombre de la prepaga</td>
+                </tr>
+                <tr>
+                  <td scope="row">edad</td>
+                  <td>Int</td>
+                  <td>Edad del usuario</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><span class="fw-semibold">Respuesta:</span></p>
+          <pre>
+            <code>[
+              {
+                "_id": "663f5b2c1a4d4d5b6f12e891",
+                "nombre": "Plan Joven",
+                "rangoEtario": {
+                  "min": 18,
+                  "max": 35
+                },
+                "cobertura": [
+                  "Emergencias las 24 horas.",
+                  "Consultas médicas y odontología general.",
+                  "Internación en habitación individual."
+                ],
+                "grupoFamiliar": [
+                  "individual",
+                  "matrimonio",
+                  "familiar"
+                ],
+                "prepaga": "Sancor Salud"
+              },
+            ]</code>
+          </pre>
+          
+        </div>
       </div>
+      
 
       <!-- TODO: Ver esto -->
       <div class="mb-5 d-none">

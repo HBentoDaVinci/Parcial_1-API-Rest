@@ -2,9 +2,32 @@ import Plan from "../models/planModel.js";
 
 const getPlanes = async (request, response) => {
     try {
-        const planes = await Plan.find(); 
+
+        const { prepaga, edad, nombre } = request.query;
+
+        const filtros = {};
+
+        if (edad) {
+            const edadNum = parseInt(edad);
+            filtros['rangoEtario.min'] = { $lte: edadNum };
+            filtros['rangoEtario.max'] = { $gte: edadNum };
+        }
+
+        if (prepaga) { filtros.prepaga = {$regex: prepaga, $options: 'i'}; }
+
+        if (nombre) { filtros.nombre = { $regex: nombre, $options: 'i' }; }
+
+        let planes;
+
+        if (filtros) {
+            planes = await Plan.find(filtros);
+        } else {
+            planes = await Plan.find(); 
+        }
+
         response.status(200).json({ msg: 'ok', data: planes});
     } catch (error) {
+        console.log(error)
         response.status(500).json({msg: 'Error del servidor', data: []});
     }
 }
@@ -27,6 +50,11 @@ const getPlanById = async (request, response) => {
 const addPlan = async (request, response) => {
     try {
         const {nombre, rangoEtario, cobertura, grupoFamiliar, prepaga, tarifa} = request.body;
+
+        // Valida que no tenga el nombre ni la prepaga vacia 
+        if (!nombre || !prepaga ){
+            return response.status(404).json({msg: 'Datos incompletos'})
+        }
 
         // Valida que no exita el plan para una misma prepaga
         const data = await Plan.findOne({nombre: nombre, prepaga: prepaga});
@@ -75,6 +103,11 @@ const updatePlanById = async (request, response) => {
     try {
         const { id } = request.params;
         const {nombre, rangoEtario, cobertura, grupoFamiliar, prepaga, tarifa} = request.body;
+
+        // Valida que no tenga el nombre ni la prepaga vacia 
+        if (!nombre || !prepaga ){
+            return response.status(404).json({msg: 'Datos incompletos'})
+        }
 
         // Valida que no exita el plan para una misma prepaga
         const data = await Plan.findOne({nombre: nombre, prepaga: prepaga});

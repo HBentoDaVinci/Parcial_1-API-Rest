@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const planSchema = new Schema({
-    nombre: String,
+    nombre: {type: String, require: true},
     rangoEtario: {
-        min: Number,
-        max: Number
+        min: {type: Number, min: 0 },
+        max: {type: Number, min: 0 }
     },
     cobertura: [String],
     grupoFamiliar: [String],
-    prepaga: String,
+    prepaga: {type: String, require: true},
     tarifa: Number
 });
 
